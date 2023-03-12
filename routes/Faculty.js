@@ -1,17 +1,11 @@
 const Router = require("express").Router;
 const router = Router();
-const Faculty = require("../Controller/Faculty");
+const faculty = require("../Controller/facultyController");
 
-router.get("/getfaculty/", Faculty.GetFaculty);
-
-router.get("/get_faculties", Faculty.GetFaculties);
-
-router.post("/addFaculty", Faculty.AddFaculty);
-
-router.put("/UpdateFaculty", Faculty.UpdateFaculty);
-
-router.delete("/delete_faculty/", Faculty.DeleteFaculty);
-
-router.post("/get_courses", Faculty.GetCourse);
+router.get("/faculty/", faculty.getFaculty);
+router.get("/faculties", faculty.getFaculties);
+router.post("/faculty", faculty.addFaculty);
+router.put("/faculty", faculty.updateFaculty);
+router.delete("/faculty", faculty.deleteFaculty);
 
 module.exports = router;

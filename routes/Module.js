@@ -1,25 +1,13 @@
 const Router = require("express").Router;
 const router = Router();
-const Module = require("../Controller/Module");
+const modules = require("../Controller/moduleController");
 
-router.get("/get_Module/", Module.GetModule);
-
-router.get("/get_Modules/", Module.GetModules);
-
-router.post("/addModule", Module.AddModule);
-
-router.put("/UpdateModule", Module.UpdateModule);
-
-router.delete("/delete_Module/", Module.DeleteModule);
-
-// get Module details 
-router.get("/get_Moduledetails/", Module.GetModuleDetails);
-
-// get ModuleLectureIncharge and Modulename
-router.get("/get_LIC/", Module.GetLIC);
-
-//enroll the course
-router.post("/enroll/", Module.Enroll);
-
+router.get("/module/", modules.getModule);
+router.get("/modules", modules.getModules);
+router.get("/search", modules.getModulesByName);
+router.post("/module", modules.addModule);
+router.put("/module", modules.updateModule);
+router.delete("/module/", modules.deleteModule);
+router.get("/LIC/", modules.getLIC);
 
 module.exports = router;
