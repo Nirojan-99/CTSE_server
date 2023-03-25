@@ -35,6 +35,7 @@ exports.getStaff = (req, res, next) => {
 };
 
 exports.getStaffs = (req, res, next) => {
+  console.log("called");
   db.getDb()
     .db()
     .collection("Staff")
@@ -63,11 +64,10 @@ exports.getStaffHOD = (req, res, next) => {
     });
 };
 exports.getStaffsByName = (req, res, next) => {
-  console.log(req.query.name);
   db.getDb()
     .db()
     .collection("Staff")
-    .find({ firstName: { $regex: "^" + req.query.name } })
+    .find({ firstName: { $regex: "^" + req.query.name, $options: "i" } })
     .toArray()
     .then((resp) => {
       // console.log(resp);

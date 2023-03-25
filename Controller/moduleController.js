@@ -51,7 +51,7 @@ exports.getModulesByName = (req, res, next) => {
   db.getDb()
     .db()
     .collection("Module")
-    .find({ moduleName: { $regex: "^" + req.query.name } })
+    .find({ moduleName: { $regex: "^" + req.query.name, $options: "i"  } })
     .toArray()
     .then((resp) => {
       if (!resp) {

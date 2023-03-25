@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken");
 const e = require("express");
 
 exports.addStudent = (req, res, next) => {
-  console.log("called");
   db.getDb()
     .db()
     .collection("Student")
@@ -49,11 +48,10 @@ exports.getStudents = (req, res, next) => {
     });
 };
 exports.getStudentsByName = (req, res, next) => {
-  console.log(req.query.name);
   db.getDb()
     .db()
     .collection("Student")
-    .find({ firstName: { $regex: "^" + req.query.name } })
+    .find({ firstName: { $regex: "^" + req.query.name, $options: "i" } })
     .toArray()
     .then((resp) => {
       // console.log(resp);
@@ -77,7 +75,7 @@ exports.deleteStudent = (req, res, next) => {
 };
 
 exports.updateStudent = (req, res, next) => {
-  console.log(req.body)
+  console.log(req.body);
   db.getDb()
     .db()
     .collection("Student")
@@ -101,7 +99,7 @@ exports.updateStudent = (req, res, next) => {
       res.status(200).json({ ...resp });
     })
     .catch(() => {
-      console.log(er)
+      console.log(er);
       res.status(400).json({ ack: false });
     });
 };
